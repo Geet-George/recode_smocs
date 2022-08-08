@@ -208,7 +208,6 @@ dependencies:
     - intake-xarray==0.6.0
     - ipfsspec==0.3.0
     - jmespath==1.0.1
-    - git+https://github.com/Geet-George/JOANNE@fed8a200f3eeb79d468b5a9c75fb71b6b3966de3
     - joblib==1.1.0
     - locket==1.0.0
     - msgpack==1.0.4
