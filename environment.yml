@@ -16,5 +16,5 @@ dependencies:
   - git
   - tqdm
   - pip:
-    - eurec4a=0.0.4
+    - eurec4a
 prefix: /Users/geet/Documents/recode_smocs/recode_smocs_env
