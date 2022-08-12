@@ -81,6 +81,7 @@ nbclassic==0.4.3
 nbclient==0.6.6
 nbconvert==6.5.0
 nbformat==5.4.0
+nbgitpuller
 nest-asyncio==1.5.5
 netCDF4==1.6.0
 notebook-shim==0.1.0
