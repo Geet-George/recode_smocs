@@ -21,6 +21,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        apt-get install libgeos++ proj-bin libproj-dev
+        sudo apt-get install libgeos++ proj-bin libproj-dev
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
