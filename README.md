@@ -1,5 +1,4 @@
 [![pip](https://github.com/Geet-George/recode_smocs/actions/workflows/pip.yml/badge.svg)](https://github.com/Geet-George/recode_smocs/actions/workflows/pip.yml)
-
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Geet-George/recode_smocs/HEAD)
 # recode_smocs
 
