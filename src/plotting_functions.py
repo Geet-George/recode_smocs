@@ -2,7 +2,12 @@ import numpy as np
 
 
 def sci_exp_axis(i, axis="x", x_pad=0.75, y_pad=0.01, scilimits=(-1, 1)):
-    """Returns matplotlib axis with exponents formatted in scientific notation """
+    """Returns exponents in scientific notation
+    
+    :param i: Matplotlib axis object  
+    
+    :return: Matplotlib axis object with ticklabels formatted in scientific notation
+    """
 
     if axis == "x":
         exponent_int = np.floor(np.log10(np.max(i.get_xlim()))).astype(int)
