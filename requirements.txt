@@ -74,6 +74,7 @@ mistune==0.8.4
 mkl-fft==1.3.1
 mkl-random==1.2.2
 mkl-service==2.4.0
+mpl-axes-aligner==1.3
 msgpack==1.0.4
 multidict==6.0.2
 munkres==1.1.4
