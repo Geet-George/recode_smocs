@@ -40,7 +40,7 @@ def sci_exp_axis(i, axis="x", x_pad=0.75, y_pad=0.01, scilimits=(-1, 1)):
     
     :param i: Matplotlib axis object  
     
-    :return: Matplotlib axis object with ticklabels formatted in scientific notation
+    :return: Matplotlib axis object with ticklabels formatted in scientific notation and exponent as string
     """
 
     if axis == "x":
@@ -80,4 +80,4 @@ def sci_exp_axis(i, axis="x", x_pad=0.75, y_pad=0.01, scilimits=(-1, 1)):
     else:
         print("specified axis should be either x or y")
 
-    return i
+    return i, exponent_int
