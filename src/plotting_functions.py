@@ -30,7 +30,7 @@ def reg_line(
                 **kwargs_for_text
             )
 
-    plt.axline(xy1=(0, b), slope=m, **kwargs_for_axline)
+    ax.axline(xy1=(0, b), slope=m, **kwargs_for_axline)
 
     return ax
 
