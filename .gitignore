@@ -42,3 +42,6 @@ docs/build/
 
 # Dev
 sandbox/*
+
+# Config
+CONFIG.ini
