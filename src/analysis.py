@@ -1,5 +1,9 @@
 def compute_over_layer(
-    dataset, variable=None, layer_base=0, layer_top=600, function="mean"
+    dataset, 
+    variable=None, 
+    layer_base=0, 
+    layer_top=600, 
+    function="mean"
 ):
     """Returns bulk values for a layer
 
@@ -23,3 +27,47 @@ def compute_over_layer(
     else:
 
         print("specified function should be either mean or std")
+
+def fit_pressure_to_altitude(
+    source_ds:"xr.Dataset",
+    recipient_ds:"xr.Dataset",
+    mean:"bool"=True,
+    source_alt_dim='alt',
+    source_pressure_dim='p',
+    recipient_alt_dim='alt',
+    recipient_pressure_dim='level',
+):
+
+    """
+    returns recipient_ds with dims swapped from pressure to altitude
+
+    pressure is for nearest altitude level (not interpolated),
+    so this function only works for profiles with high vertical resolution
+
+    if there are multiple pressure profiles, keep mean=True;
+    otherwise provide single pressure profile
+
+    altitude to pressure profile is taken by estimating mean pressure over all dimensions 
+    except provided source_alt_dim (default = 'alt')
+
+    Units of pressure are assumed to be Pa for source and hPa for recipient
+
+    The dataset is returned with altitude coordinates in ascending order
+    """
+    if mean:
+        mean_dims = list(source_ds.dims)
+        mean_dims.remove('alt')
+
+        alt_for_recipient = source_ds.mean(dim=mean_dims).swap_dims(
+            {source_alt_dim:source_pressure_dim}).dropna(dim=source_pressure_dim,how='any').reindex(
+            {source_pressure_dim:recipient_ds[recipient_pressure_dim].values*100},method='nearest')[source_alt_dim].values.astype('float')
+    else:
+        alt_for_recipient = source_ds.swap_dims(
+            {source_alt_dim:source_pressure_dim}).dropna(dim=source_pressure_dim,how='any').reindex(
+            {source_pressure_dim:recipient_ds[recipient_pressure_dim].values*100},method='nearest')[source_alt_dim].values.astype('float')
+
+    recipient_ds[recipient_alt_dim] = ([recipient_pressure_dim],alt_for_recipient)
+
+    recipient_ds = recipient_ds.swap_dims({recipient_pressure_dim:recipient_alt_dim}).sortby(recipient_alt_dim)
+    
+    return recipient_ds
