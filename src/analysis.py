@@ -71,3 +71,24 @@ def fit_pressure_to_altitude(
     recipient_ds = recipient_ds.swap_dims({recipient_pressure_dim:recipient_alt_dim}).sortby(recipient_alt_dim)
     
     return recipient_ds
+
+
+def r_value(x,y):  
+    """Returns Pearson's r-value after removing NaNs from the input arrays
+
+    Parameters
+    ----------
+    x : ndArray
+    y : ndArray
+
+    Returns
+    -------
+    float64
+        Pearson's r-value between x & y
+    """
+    import numpy as np
+    import scipy as sp
+
+    nas = np.logical_or(np.isnan(x), np.isnan(y))
+    if sum(~nas) > 1 :
+        return sp.stats.pearsonr(x[~nas],y[~nas])[0]
